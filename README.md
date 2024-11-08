@@ -16,4 +16,6 @@ For random games, users can provide a custom seed. This ensures that the same ga
 
 ## Structure
 
+There is no english dictionary yet added. The dictionary for Finnish is from https://www.kotus.fi/aineistot/sana-aineistot/nykysuomen_sanalista and it seems include more words that the one used by HS.
+
 The files that has "gui" in their name contains the code for the gui. The solver funtions are in "solvers.py" file and can be utilized without the gui as well. ChatGPT has been used for writing parts of the program. 

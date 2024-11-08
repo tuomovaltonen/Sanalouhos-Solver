@@ -1,3 +1,9 @@
+# Ignore all files in the Louhokset directory
+Louhokset/*
+
+# Exclude (whitelist) Example_Sanalouhos.txt
+!Louhokset/Example_Sanalouhos.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

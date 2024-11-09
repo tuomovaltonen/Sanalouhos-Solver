@@ -1,6 +1,8 @@
 import random
+from collections import Counter
 
 def load_words_from_file(filename, max_length):
+    # Read words that are less than 11 or more than 2
     with open(filename, 'r') as file:
         words = [line.strip() for line in file if len(line.strip()) >= 3 and len(line.strip()) <= max_length]
     return words
@@ -100,7 +102,6 @@ def cover_the_grid(chains, rows, cols, number_of_answer):
         global current_num
         if number_of_answer > current_num or number_of_answer == -1:
             current_cell= (-1,-1)
-            #find next cell to cover
             for i in range(rows):
                 for j in range(cols):
                     if not covered_cells[i][j]:
@@ -131,7 +132,7 @@ def get_all_words(language):
     if language == "finnish":
         return load_words_from_file("Dictionaries/all_finnish_words.txt", 10)
     elif language == "english":
-        return ["dog", "cat", "rememberance", "cinderella"]
+        return load_words_from_file("Dictionaries/english_words.txt", 10)
     else:
          return []
 #if min sols -1 solve all
@@ -140,15 +141,18 @@ def solve(letters, language, min_sols):
     rows = len(letters)
     cols = len(letters[0])
     letters = [[letter.lower() for letter in row] for row in letters]
-
     chains = []
     for i in range(rows):
         for j in range(cols):
+            w = find_words_from_index(letters, i, j, all_words)
+            # Check that at least one word covers all the cells 
+            if len(w) == 0:
+                return []
             chains += find_words_from_index(letters, i, j, all_words)
     unique_chains = filter_unique_sets(chains)
     unique_chains.sort(key=len, reverse=True)
+    coordinates = []
     coordinates = cover_the_grid(unique_chains, rows, cols, min_sols)
-    
     return coordinates
 
 
@@ -260,10 +264,10 @@ def rand_letters(cords, language, cols, rows):
     return letters
 
 
-def get_random_grid(selected_language, cols, rows, given_seed):
+def get_random_game(selected_language, cols, rows, given_seed):
     random.seed(given_seed)
-    coord = rand_coordinates(cols, rows)
-    return rand_letters(coord, selected_language, cols, rows)
+    coords = rand_coordinates(cols, rows)
+    return (rand_letters(coords, selected_language, cols, rows), coords)
 
 
 

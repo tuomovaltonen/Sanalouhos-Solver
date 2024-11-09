@@ -1,4 +1,5 @@
 import tkinter as tk
+import time
 from tkinter import  filedialog, messagebox
 from solvers import solve, get_words_from_coordinates
 from utilities import color_scale, sort_solutions
@@ -136,14 +137,27 @@ def create_grid(window, rows, cols, letters=None):
 def open_solution_window(is_create_mode,is_save_solution, previous_window, letters,rows,cols,language, num_sol,intented_solution = None, time_string = None):
     #Find Solution
     global solutions
-    
-    solutions = solve(letters,language, num_sol)
+    if num_sol == 1 and intented_solution != None:
+        solutions = [intented_solution]
+    else:
+        # Normilize the count
+        # A bit clumsy but works
+        if num_sol != -1 and intented_solution != None:
+            num_sol -= 1
+        solutions = solve(letters,language, num_sol)
+        solutions = sort_solutions(solutions)
+        
+        if intented_solution != None :
+            solutions.insert(0, intented_solution)
+        # Add intented solution as first if it is available
+        # The program depicts one solution two much in the solutions
+
     try:
         if len(solutions) == 0:
             raise ValueError("No solutions found!")
         
          #sort solution
-        solutions = sort_solutions(solutions, intented_solution)
+        
         global words
         words = get_words_from_coordinates(solutions, letters)
         # Destroy previous window

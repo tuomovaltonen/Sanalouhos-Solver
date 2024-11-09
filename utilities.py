@@ -107,24 +107,9 @@ def find_path():
             return file_path
         i += 1
 
-def sort_solutions(solutions, intended_solution = None):
+def sort_solutions(solutions):
     # Sort solutions based on the lengths of arrays within each element
     solutions.sort(key=lambda x: sorted([len(arr) for arr in x], reverse=True), reverse=True)
-    
-    # Check if intended_solution exists in solutions
-    if intended_solution != None:
-        intended_found = False
-        for i, sol in enumerate(solutions):
-            if sorted(map(sorted, sol)) == sorted(map(sorted, intended_solution)):
-                # Move intended_solution to the front
-                solutions.insert(0, solutions.pop(i))
-                intended_found = True
-                break
-        
-        if not intended_found:
-            # Add intended_solution as the first element if not found
-            solutions.insert(0, intended_solution)
-
     return solutions
 
 

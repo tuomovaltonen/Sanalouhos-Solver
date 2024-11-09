@@ -3,7 +3,7 @@ from tkinter import  filedialog, messagebox
 from solve_gui import open_grid_window
 from utilities import read_from_file
 from play_gui import open_play_window
-from solvers import get_random_grid, solve
+from solvers import get_random_game, solve
 import random
 
 def go_back_to_start(window):
@@ -151,8 +151,8 @@ def settings_submit_action(language_var, num1, num2, is_rand_play):
         # Open next window
         if is_rand_play:
             global num3
-            letters = get_random_grid(selected_language, cols, rows, int(num3.get()))
-            open_play_window(selected_language, letters, settings, False)
+            letters, solution = get_random_game(selected_language, cols, rows, int(num3.get()))
+            open_play_window(selected_language, letters, settings, False, solution)
         else:
             open_grid_window(settings, rows, cols, selected_language)
     except ValueError as e:

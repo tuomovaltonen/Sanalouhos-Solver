@@ -8,7 +8,7 @@ Tkinter is needed for the gui. It is often already installed with python. More i
 
 Running the script main.py will start the program. After that the GUI is quite self explanatory. 
 
-The games created can be saved in .txt files. By default they are saved in the "Louhokset" folder. There is one example game provided in the folder.
+The games created can be saved in .txt files. By default, they are saved in the "Louhokset" folder. There is one example game provided in the folder.
 
 For random games, users can provide a custom seed. This ensures that the same game is generated every time, which is particularly useful for competitive play with friends. Generating a large random game can take few seconds.
 

@@ -140,10 +140,10 @@ def open_solution_window(is_create_mode,is_save_solution, previous_window, lette
     if num_sol == 1 and intented_solution != None:
         solutions = [intented_solution]
     else:
-        # Normilize the count
-        # A bit clumsy but works
+        # Normilize the count if there is a intented solution
         if num_sol != -1 and intented_solution != None:
             num_sol -= 1
+            
         solutions = solve(letters,language, num_sol)
         solutions = sort_solutions(solutions)
         

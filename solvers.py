@@ -144,11 +144,15 @@ def solve(letters, language, min_sols):
     chains = []
     for i in range(rows):
         for j in range(cols):
-            w = find_words_from_index(letters, i, j, all_words)
-            # Check that at least one word covers all the cells 
-            if len(w) == 0:
-                return []
             chains += find_words_from_index(letters, i, j, all_words)
+    # Check that at least one word covers all the cells 
+    flat_set= set([pair for chain in chains for pair in chain])
+    
+    for i in range(rows):
+        for j in range(cols):
+            if (i,j) not in flat_set:
+                return []
+            
     unique_chains = filter_unique_sets(chains)
     unique_chains.sort(key=len, reverse=True)
     coordinates = []

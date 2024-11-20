@@ -1,8 +1,11 @@
 # Sanalouhos-Solver
 Solver, random game constructor and ability to write your own Sanalouhos with graphical user interface. Sanalouhos is a word game created by Helsingin Sanomat. Works also for Strands by New York times.
 
+# Notes
+It seems that some windows systems the default window backround is white making the letters difficult to spot whe playing. This can be changed by switching all the fg="white" to fg="black".
+
 ## Installation
-Tkinter is needed for the gui. It is often already installed with python. More information in https://docs.python.org/3/library/tkinter.html.
+Tkinter is needed for the gui. Numpy for random number generation. It is often already installed with python. More information in https://docs.python.org/3/library/tkinter.html.
 
 ## Usage
 

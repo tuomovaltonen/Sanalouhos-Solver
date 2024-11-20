@@ -3,7 +3,7 @@ from collections import Counter
 
 def load_words_from_file(filename, max_length):
     # Read words that are less than 11 or more than 2
-    with open(filename, 'r') as file:
+    with open(filename, 'r', encoding='utf-8') as file:
         words = [line.strip() for line in file if len(line.strip()) >= 3 and len(line.strip()) <= max_length]
     return words
 
@@ -254,7 +254,8 @@ def rand_letters(cords, language, cols, rows):
     all_words = get_all_words(language)
     words = []
     for i in cords:
-        words.append(random.choice([s for s in all_words if len(s) == len(i)]))
+        w = random.choice([s for s in all_words if len(s) == len(i)])
+        words.append(w)
     
     letters = [["" for _ in range(cols)] for _ in range(rows)]
 

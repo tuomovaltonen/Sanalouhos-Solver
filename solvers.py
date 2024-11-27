@@ -212,7 +212,15 @@ def get_rand_partition(cols, rows):
     ans = []
     sum = 0
     while(sum < rows*cols):
-        rand_num = random.randint(3,10)
+        # Use normal distibution so that the values are not so large
+        mean = 6.5  # Mean of the normal distribution
+        std_dev = 1.5  # Standard deviation
+        # Generate a normally distributed value
+        value = random.gauss(mean, std_dev)
+        # Round to nearest integer
+        rounded_value = round(value)
+        # Ensure it's within the specified range
+        rand_num = max(3, min(10, rounded_value))
         if rows * cols - sum - rand_num < 3:
             rand_num = rows * cols - sum 
         if(rand_num > 10):
